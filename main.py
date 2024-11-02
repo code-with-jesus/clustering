@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 
 from algorithms.kmeans import KMeans
-
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Main program
 if __name__ == "__main__":
@@ -23,4 +23,12 @@ if __name__ == "__main__":
     plt.legend()
     plt.savefig("output.png")
     plt.show()
+    
+    # Initialize TF-IDF Vectorizer
+    vectorizer = TfidfVectorizer(stop_words='english')
+
+    # Fit and transform the training data
+    X_train_tfidf = vectorizer.fit_transform(newsgroups_train.data)
+
+    print("TF-IDF matrix shape:", X_train_tfidf.shape)
 
